@@ -226,11 +226,11 @@ diffusionEstim <- function(x, l = 2, cumulative = c(FALSE, TRUE),
     if (is.null(prew)) {
     # no values from previous generation
     prew <- rep(0, no.w)
-  } # else if (anyNA(prew)) {
-  #   # partially fixed parameters
-  #   w.idx[!is.na(prew)] <- FALSE # disable parameters
-  #   prew[is.na(prew)] <- 0 # set NA to 0 in order to estimated
-  # }
+  } else if (anyNA(prew)) {
+    # partially fixed parameters
+    w.idx[!is.na(prew)] <- FALSE # disable parameters
+    prew[is.na(prew)] <- 0 # set NA to 0 in order to estimated
+  }
   
   switch(type,
          "bass" = init <- bassInit(x),
